@@ -58,6 +58,7 @@ export function useNetwork() {
   return {
     networks: networks || [],
     selectedNetwork,
+    currentNetwork: selectedNetwork,
     rpcStatus,
     isLoading,
     switchNetwork,

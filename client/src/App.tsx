@@ -7,6 +7,7 @@ import { PrivyProvider } from '@privy-io/react-auth';
 import { PRIVY_APP_ID, privyConfig } from "@/lib/privy";
 import WalletPage from "@/pages/wallet";
 import LoginPage from "@/pages/login";
+import SettingsPage from "@/pages/settings";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -14,6 +15,7 @@ function Router() {
     <Switch>
       <Route path="/" component={WalletPage} />
       <Route path="/login" component={LoginPage} />
+      <Route path="/settings" component={SettingsPage} />
       <Route component={NotFound} />
     </Switch>
   );

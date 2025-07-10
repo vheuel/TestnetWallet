@@ -61,96 +61,92 @@ export default function TokenList() {
   }
 
   return (
-    <Card className="shadow-sm border border-gray-200">
-      <div className="p-6 border-b border-gray-200">
-        <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold text-gray-900">Assets</h3>
-          <Dialog open={showAddTokenDialog} onOpenChange={setShowAddTokenDialog}>
-            <DialogTrigger asChild>
-              <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80">
-                <Plus className="w-4 h-4 mr-1" />
-                Add Token
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Add Custom Token</DialogTitle>
-              </DialogHeader>
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="tokenAddress">Token Contract Address</Label>
-                  <Input
-                    id="tokenAddress"
-                    value={tokenAddress}
-                    onChange={(e) => setTokenAddress(e.target.value)}
-                    placeholder="0x..."
-                    className="mt-1"
-                  />
-                </div>
-                <Button 
-                  onClick={handleAddToken} 
-                  disabled={!tokenAddress.trim() || isAddingToken}
-                  className="w-full"
-                >
-                  {isAddingToken ? (
-                    <>
-                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                      Adding...
-                    </>
-                  ) : (
-                    'Add Token'
-                  )}
-                </Button>
-              </div>
-            </DialogContent>
-          </Dialog>
+    <div>
+      {tokens.length === 0 ? (
+        <div className="p-6 text-center text-gray-500">
+          <p>No tokens found for this network</p>
         </div>
-      </div>
-      
-      <div className="divide-y divide-gray-200">
-        {tokens.length === 0 ? (
-          <div className="p-6 text-center text-gray-500">
-            <p>No tokens found for this network</p>
-          </div>
-        ) : (
-          tokens.map((token) => {
-            const balance = tokenBalances[token.address] || '0';
-            const formattedBalance = parseFloat(balance).toFixed(token.decimals > 6 ? 6 : token.decimals);
-            
-            return (
-              <div key={token.address} className="p-6 hover:bg-gray-50 transition-colors">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    <div className="relative">
-                      <img
-                        src={getTokenIcon(token.symbol)}
-                        alt={token.symbol}
-                        className="w-10 h-10 rounded-full"
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                        }}
-                      />
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center">
-                        <span className="text-white font-bold text-sm">
-                          {token.symbol.slice(0, 2)}
-                        </span>
-                      </div>
+      ) : (
+        tokens.map((token) => {
+          const balance = tokenBalances[token.address] || '0';
+          const formattedBalance = parseFloat(balance).toFixed(4);
+          
+          return (
+            <div key={token.address} className="flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+              <div className="flex items-center gap-3">
+                <div className="relative">
+                  {token.symbol === 'ETH' ? (
+                    <div className="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">ET</span>
                     </div>
-                    <div>
-                      <h4 className="font-medium text-gray-900">{token.symbol}</h4>
-                      <p className="text-sm text-gray-500">{token.name}</p>
+                  ) : token.symbol === 'USDC' ? (
+                    <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">US</span>
                     </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="font-medium text-gray-900">{formattedBalance}</p>
-                    <p className="text-sm text-gray-500">$0.00</p>
-                  </div>
+                  ) : (
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">
+                        {token.symbol.slice(0, 2)}
+                      </span>
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <div className="font-medium text-gray-900 dark:text-white">{token.symbol}</div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400">{token.name}</div>
                 </div>
               </div>
-            );
-          })
-        )}
+              <div className="text-right">
+                <div className="font-medium text-gray-900 dark:text-white">{formattedBalance}</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">$0.00</div>
+              </div>
+            </div>
+          );
+        })
+      )}
+      
+      {/* Add Token Button */}
+      <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+        <Dialog open={showAddTokenDialog} onOpenChange={setShowAddTokenDialog}>
+          <DialogTrigger asChild>
+            <Button variant="ghost" size="sm" className="w-full text-blue-600 hover:text-blue-700">
+              <Plus className="w-4 h-4 mr-2" />
+              Add Custom Token
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Add Custom Token</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4">
+              <div>
+                <Label htmlFor="tokenAddress">Token Contract Address</Label>
+                <Input
+                  id="tokenAddress"
+                  value={tokenAddress}
+                  onChange={(e) => setTokenAddress(e.target.value)}
+                  placeholder="0x..."
+                  className="mt-1"
+                />
+              </div>
+              <Button 
+                onClick={handleAddToken} 
+                disabled={!tokenAddress.trim() || isAddingToken}
+                className="w-full"
+              >
+                {isAddingToken ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Adding...
+                  </>
+                ) : (
+                  'Add Token'
+                )}
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
-    </Card>
+    </div>
   );
 }

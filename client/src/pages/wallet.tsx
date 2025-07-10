@@ -1,56 +1,40 @@
-import { useEffect } from 'react';
-import { useLocation } from 'wouter';
-import { usePrivy } from '@privy-io/react-auth';
-import { useWallet } from '@/hooks/useWallet';
-import { useNetwork } from '@/hooks/useNetwork';
-import { FlaskConical, AlertCircle } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import NetworkSelector from '@/components/wallet/NetworkSelector';
-import WalletOverview from '@/components/wallet/WalletOverview';
-import TokenList from '@/components/wallet/TokenList';
-import TransactionHistory from '@/components/wallet/TransactionHistory';
-import FaucetPanel from '@/components/wallet/FaucetPanel';
-import NetworkInfo from '@/components/wallet/NetworkInfo';
-import WalletTools from '@/components/wallet/WalletTools';
+import { useState } from "react";
+import { usePrivy } from "@privy-io/react-auth";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Copy, Wallet, Droplets, Send, Settings } from "lucide-react";
+import { useNetwork } from "@/hooks/useNetwork";
+import { useWallet } from "@/hooks/useWallet";
+import { useToast } from "@/hooks/use-toast";
+import NetworkSelector from "@/components/wallet/NetworkSelector";
+import TokenList from "@/components/wallet/TokenList";
+import TransactionHistory from "@/components/wallet/TransactionHistory";
+import SendModal from "@/components/modals/SendModal";
+import ReceiveModal from "@/components/modals/ReceiveModal";
+import FaucetModal from "@/components/modals/FaucetModal";
+import { Link } from "wouter";
 
 export default function WalletPage() {
-  const [, setLocation] = useLocation();
-  const { ready, authenticated, logout } = usePrivy();
-  const { user, isCreatingWallet } = useWallet();
-  const { selectedNetwork } = useNetwork();
-
-  useEffect(() => {
-    if (ready && !authenticated) {
-      setLocation('/login');
-    }
-  }, [ready, authenticated, setLocation]);
-
-  if (!ready) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-      </div>
-    );
-  }
+  const { authenticated, user, logout } = usePrivy();
+  const { currentNetwork } = useNetwork();
+  const { wallet, totalBalance } = useWallet();
+  const { toast } = useToast();
+  const [sendModalOpen, setSendModalOpen] = useState(false);
+  const [receiveModalOpen, setReceiveModalOpen] = useState(false);
+  const [faucetModalOpen, setFaucetModalOpen] = useState(false);
 
   if (!authenticated) {
-    return null;
-  }
-
-  if (isCreatingWallet) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <Card className="w-full max-w-md mx-4">
-          <CardContent className="pt-8 pb-8 text-center">
-            <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mx-auto mb-4">
-              <FlaskConical className="w-8 h-8 text-white animate-pulse" />
-            </div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">
-              Creating Your Wallet
-            </h2>
-            <p className="text-gray-600 text-sm">
-              Please wait while we set up your testnet wallet...
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+        <Card className="w-full max-w-md">
+          <CardContent className="text-center py-12">
+            <h1 className="text-2xl font-bold mb-2">TestNet Wallet</h1>
+            <p className="text-gray-600 dark:text-gray-400 mb-4">
+              Please log in to access your wallet
+            </p>
+            <p className="text-sm text-gray-500">
+              Redirecting to login...
             </p>
           </CardContent>
         </Card>
@@ -58,90 +42,156 @@ export default function WalletPage() {
     );
   }
 
+  const handleCopyAddress = () => {
+    if (wallet?.address) {
+      navigator.clipboard.writeText(wallet.address);
+      toast({
+        title: "Address Copied",
+        description: "Wallet address copied to clipboard",
+      });
+    }
+  };
+
+  const formatAddress = (address: string) => {
+    return `${address.slice(0, 6)}...${address.slice(-10)}`;
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo and Brand */}
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <FlaskConical className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-gray-900">TestNet Wallet</h1>
-                <p className="text-xs text-accent font-medium">TESTNET ONLY</p>
-              </div>
-            </div>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="max-w-md mx-auto">
+        {/* Header with Network Selector */}
+        <div className="flex items-center justify-between p-4 bg-white dark:bg-gray-800 shadow-sm">
+          <NetworkSelector />
+          <Button variant="ghost" size="sm" onClick={logout}>
+            Logout
+          </Button>
+        </div>
 
-            {/* Network Selector and User Profile */}
-            <div className="hidden md:flex items-center space-x-4">
-              <NetworkSelector />
-              
-              <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center">
-                  <span className="text-white text-sm font-medium">
-                    {user?.walletAddress?.slice(0, 2).toUpperCase() || 'U'}
-                  </span>
-                </div>
-                <span className="text-sm font-medium text-gray-700">
-                  {user?.walletAddress ? 
-                    `${user.walletAddress.slice(0, 6)}...${user.walletAddress.slice(-4)}` : 
-                    'Loading...'
-                  }
-                </span>
-                <Button
-                  onClick={logout}
-                  variant="ghost"
-                  size="sm"
-                  className="text-gray-500 hover:text-gray-700"
-                >
-                  Logout
-                </Button>
-              </div>
+        {/* Wallet Address and Balance */}
+        <div className="bg-white dark:bg-gray-800 px-4 py-6 text-center">
+          {wallet?.address && (
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <span className="text-gray-600 dark:text-gray-400 text-sm">
+                {formatAddress(wallet.address)}
+              </span>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="p-1 h-6 w-6"
+                onClick={handleCopyAddress}
+              >
+                <Copy className="h-3 w-3" />
+              </Button>
             </div>
-
-            {/* Mobile Menu Button */}
-            <div className="md:hidden">
-              <NetworkSelector />
-            </div>
+          )}
+          
+          <div className="text-4xl font-bold text-gray-900 dark:text-white mb-1">
+            {totalBalance || "0.0000"}
+          </div>
+          <div className="text-gray-600 dark:text-gray-400">
+            {currentNetwork?.name || "Select Network"}
           </div>
         </div>
-      </header>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {!selectedNetwork ? (
-          <Card className="w-full max-w-md mx-auto">
-            <CardContent className="pt-8 pb-8 text-center">
-              <AlertCircle className="w-12 h-12 text-amber-500 mx-auto mb-4" />
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">
-                No Network Selected
-              </h2>
-              <p className="text-gray-600 text-sm">
-                Please select a testnet to get started
-              </p>
-            </CardContent>
-          </Card>
-        ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Left Column - Wallet Overview */}
-            <div className="lg:col-span-2 space-y-6">
-              <WalletOverview />
-              <TokenList />
-              <TransactionHistory />
-            </div>
+        {/* Assets and Recent Transactions Tabs */}
+        <div className="bg-white dark:bg-gray-800">
+          <Tabs defaultValue="assets" className="w-full">
+            <TabsList className="grid w-full grid-cols-2 bg-sky-100 dark:bg-sky-900/20 m-0 rounded-none">
+              <TabsTrigger 
+                value="assets" 
+                className="data-[state=active]:bg-sky-500 data-[state=active]:text-white rounded-none"
+              >
+                Assets
+              </TabsTrigger>
+              <TabsTrigger 
+                value="transactions"
+                className="data-[state=active]:bg-sky-500 data-[state=active]:text-white rounded-none"
+              >
+                Recent Transaction
+              </TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="assets" className="mt-0 p-0">
+              <div className="min-h-[400px]">
+                <TokenList />
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="transactions" className="mt-0 p-0">
+              <div className="min-h-[400px] p-4">
+                <TransactionHistory />
+              </div>
+            </TabsContent>
+          </Tabs>
+        </div>
 
-            {/* Right Column - Tools and Info */}
-            <div className="space-y-6">
-              <FaucetPanel />
-              <NetworkInfo />
-              <WalletTools />
-            </div>
+        {/* Bottom Navigation */}
+        <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+          <div className="max-w-md mx-auto grid grid-cols-4 gap-1 p-2">
+            {/* Wallet (Current Page) */}
+            <Button
+              variant="ghost"
+              className="flex flex-col items-center gap-1 py-3 px-2 text-blue-600 dark:text-blue-400"
+            >
+              <Wallet className="h-6 w-6" />
+              <span className="text-xs">Wallet</span>
+            </Button>
+
+            {/* Faucet */}
+            <Button
+              variant="ghost"
+              className="flex flex-col items-center gap-1 py-3 px-2 text-gray-600 dark:text-gray-400"
+              onClick={() => setFaucetModalOpen(true)}
+            >
+              <Droplets className="h-6 w-6" />
+              <span className="text-xs">Faucet</span>
+            </Button>
+
+            {/* Send */}
+            <Button
+              variant="ghost"
+              className="flex flex-col items-center gap-1 py-3 px-2 text-gray-600 dark:text-gray-400"
+              onClick={() => setSendModalOpen(true)}
+              disabled={!wallet}
+            >
+              <div className="relative">
+                <div className="h-12 w-12 bg-green-500 rounded-full flex items-center justify-center">
+                  <Send className="h-6 w-6 text-white" />
+                </div>
+              </div>
+              <span className="text-xs">Send</span>
+            </Button>
+
+            {/* Settings */}
+            <Link href="/settings">
+              <Button
+                variant="ghost"
+                className="flex flex-col items-center gap-1 py-3 px-2 text-gray-600 dark:text-gray-400"
+              >
+                <Settings className="h-6 w-6" />
+                <span className="text-xs">Settings</span>
+              </Button>
+            </Link>
           </div>
-        )}
-      </main>
+        </div>
+
+        {/* Add bottom padding to account for fixed navigation */}
+        <div className="h-20"></div>
+
+        {/* Modals */}
+        <SendModal 
+          isOpen={sendModalOpen} 
+          onClose={() => setSendModalOpen(false)} 
+        />
+        <ReceiveModal 
+          isOpen={receiveModalOpen} 
+          onClose={() => setReceiveModalOpen(false)} 
+        />
+        <FaucetModal 
+          isOpen={faucetModalOpen} 
+          onClose={() => setFaucetModalOpen(false)} 
+        />
+      </div>
     </div>
   );
 }

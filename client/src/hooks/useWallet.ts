@@ -130,6 +130,11 @@ export function useWallet() {
     user: walletUser,
     authenticated,
     isCreatingWallet,
+    wallet: walletUser ? {
+      address: walletUser.walletAddress,
+      privateKey: walletUser.encryptedPrivateKey,
+    } : null,
+    totalBalance: "0.5432", // This would come from actual balance calculation
     login,
     logout,
     createWalletForUser,
