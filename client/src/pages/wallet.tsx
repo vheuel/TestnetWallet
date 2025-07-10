@@ -25,21 +25,7 @@ export default function WalletPage() {
   const [faucetModalOpen, setFaucetModalOpen] = useState(false);
 
   if (!authenticated) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
-        <Card className="w-full max-w-md">
-          <CardContent className="text-center py-12">
-            <h1 className="text-2xl font-bold mb-2">TestNet Wallet</h1>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
-              Please log in to access your wallet
-            </p>
-            <p className="text-sm text-gray-500">
-              Redirecting to login...
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-    );
+    return <Link href="/"><div></div></Link>;
   }
 
   const handleCopyAddress = () => {

@@ -6,7 +6,7 @@ export const DEFAULT_TESTNET_NETWORKS: Network[] = [
     chainId: "11155111",
     name: "Sepolia Testnet",
     symbol: "ETH",
-    rpcUrl: "https://sepolia.infura.io/v3/",
+    rpcUrl: "https://eth-sepolia.g.alchemy.com/v2/demo",
     explorerUrl: "https://sepolia.etherscan.io",
     isTestnet: true,
     iconUrl: "https://cryptologos.cc/logos/ethereum-eth-logo.png"
@@ -16,7 +16,7 @@ export const DEFAULT_TESTNET_NETWORKS: Network[] = [
     chainId: "80001",
     name: "Polygon Mumbai",
     symbol: "MATIC",
-    rpcUrl: "https://rpc-mumbai.maticvigil.com",
+    rpcUrl: "https://polygon-mumbai.g.alchemy.com/v2/demo",
     explorerUrl: "https://mumbai.polygonscan.com",
     isTestnet: true,
     iconUrl: "https://cryptologos.cc/logos/polygon-matic-logo.png"

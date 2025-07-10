@@ -70,7 +70,7 @@ export default function SettingsPage() {
         {/* Header */}
         <div className="flex items-center justify-between mb-6 px-4">
           <div className="flex items-center gap-3">
-            <Link href="/">
+            <Link href="/wallet">
               <Button variant="ghost" size="sm" className="p-2">
                 <ArrowLeft className="h-5 w-5" />
               </Button>
@@ -185,7 +185,7 @@ export default function SettingsPage() {
                 <CardDescription>Get free testnet tokens for development</CardDescription>
               </CardHeader>
               <CardContent>
-                <Link href="/">
+                <Link href="/wallet">
                   <Button variant="outline" className="w-full justify-start">
                     <ExternalLink className="h-4 w-4 mr-2" />
                     Access Faucets from Wallet

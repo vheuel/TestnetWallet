@@ -18,11 +18,12 @@ export function useNetwork() {
     }
   }, [networks, selectedNetwork]);
 
-  useEffect(() => {
-    if (selectedNetwork) {
-      checkRpcStatus();
-    }
-  }, [selectedNetwork]);
+  // Disable automatic RPC status check to prevent spam
+  // useEffect(() => {
+  //   if (selectedNetwork) {
+  //     checkRpcStatus();
+  //   }
+  // }, [selectedNetwork]);
 
   const checkRpcStatus = async () => {
     if (!selectedNetwork) return;
