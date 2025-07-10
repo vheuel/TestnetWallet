@@ -8,6 +8,7 @@ import { dirname } from "path";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
+  base: '', // ✅ Tambahkan baris ini
   plugins: [
     react(),
     runtimeErrorOverlay(),
@@ -29,7 +30,7 @@ export default defineConfig({
   },
   root: path.resolve(__dirname, "client"),
   build: {
-    outDir: "dist", // Vercel expects this
+    outDir: "dist",
     emptyOutDir: true,
   },
   server: {
