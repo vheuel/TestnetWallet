@@ -1,0 +1,519 @@
+[
+  {
+    "chainId": "oasis",
+    "rpcList": [
+      {
+        "chainId": "oasis",
+        "id": 43,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://rosetta.oasis.dev/api/v1"
+      }
+    ]
+  },
+  {
+    "chainId": "harmony",
+    "rpcList": [
+      {
+        "chainId": "harmony",
+        "id": 36,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://api.s0.t.hmny.io/"
+      }
+    ]
+  },
+  {
+    "chainId": "avalanchec",
+    "rpcList": [
+      {
+        "chainId": "avalanchec",
+        "id": 1,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://api.avax.network/ext/bc/C/rpc"
+      }
+    ]
+  },
+  {
+    "chainId": "doge",
+    "rpcList": [
+      {
+        "chainId": "doge",
+        "id": 5,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://chain.so/api/v2"
+      }
+    ]
+  },
+  {
+    "chainId": "fantom",
+    "rpcList": [
+      {
+        "chainId": "fantom",
+        "id": 20,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://rpcapi.fantom.network"
+      }
+    ]
+  },
+  {
+    "chainId": "icon",
+    "rpcList": [
+      {
+        "chainId": "icon",
+        "id": 27,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://ctz.solidwallet.io/api/v3"
+      }
+    ]
+  },
+  {
+    "chainId": "solana",
+    "rpcList": [
+      {
+        "chainId": "solana",
+        "id": 12,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://api.mainnet-beta.solana.com"
+      }
+    ]
+  },
+  {
+    "chainId": "kcc",
+    "rpcList": [
+      {
+        "chainId": "kcc",
+        "id": 34,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://rpc-testnet.kcc.network"
+      }
+    ]
+  },
+  {
+    "chainId": "celo",
+    "rpcList": [
+      {
+        "chainId": "celo",
+        "id": 19,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://rpc.ankr.com/celo"
+      }
+    ]
+  },
+  {
+    "chainId": "aurora",
+    "rpcList": [
+      {
+        "chainId": "aurora",
+        "id": 17,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://mainnet.aurora.dev"
+      }
+    ]
+  },
+  {
+    "chainId": "theta",
+    "rpcList": [
+      {
+        "chainId": "theta",
+        "id": 40,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://theta-bridge-rpc-testnet.thetatoken.org/rpc"
+      }
+    ]
+  },
+  {
+    "chainId": "ethereum",
+    "rpcList": [
+      {
+        "chainId": "ethereum",
+        "id": 7,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://eth.llamarpc.com"
+      }
+    ]
+  },
+  {
+    "chainId": "ton",
+    "rpcList": [
+      {
+        "chainId": "ton",
+        "id": 46,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://toncenter.com"
+      }
+    ]
+  },
+  {
+    "chainId": "cardano",
+    "rpcList": [
+      {
+        "chainId": "cardano",
+        "extend": "[{\"name\": \"Content-Type\", \"value\": \"application/cbor\"}, {\"name\": \"project_id\", \"value\": \"mainnetjeOokTkJJNRrhb8s2uNRffLwapHIfNdD\"}]",
+        "id": 3,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://cardano-mainnet.blockfrost.io/api/v0"
+      }
+    ]
+  },
+  {
+    "chainId": "smartchain",
+    "rpcList": [
+      {
+        "chainId": "smartchain",
+        "id": 30,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://bsc-dataseed4.ninicoin.io"
+      }
+    ]
+  },
+  {
+    "chainId": "cronos",
+    "rpcList": [
+      {
+        "chainId": "cronos",
+        "id": 4,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://evm.cronos.org"
+      }
+    ]
+  },
+  {
+    "chainId": "elrond",
+    "rpcList": [
+      {
+        "chainId": "elrond",
+        "id": 24,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://api.elrond.com"
+      }
+    ]
+  },
+  {
+    "chainId": "near",
+    "rpcList": [
+      {
+        "chainId": "near",
+        "id": 22,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://rpc.mainnet.near.org"
+      }
+    ]
+  },
+  {
+    "chainId": "terra_c",
+    "rpcList": [
+      {
+        "chainId": "terra_c",
+        "id": 39,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://lcd.terra.dev"
+      }
+    ]
+  },
+  {
+    "chainId": "tezos",
+    "rpcList": [
+      {
+        "chainId": "tezos",
+        "id": 42,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://mainnet.api.tez.ie"
+      }
+    ]
+  },
+  {
+    "chainId": "arbitrum",
+    "rpcList": [
+      {
+        "chainId": "arbitrum",
+        "id": 16,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://rpc.ankr.com/arbitrum"
+      }
+    ]
+  },
+  {
+    "chainId": "waves",
+    "rpcList": [
+      {
+        "chainId": "waves",
+        "id": 26,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://nodes.wavesnodes.com"
+      }
+    ]
+  },
+  {
+    "chainId": "filecoin",
+    "rpcList": [
+      {
+        "chainId": "filecoin",
+        "id": 32,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://rpc.ankr.com/filecoin"
+      }
+    ]
+  },
+  {
+    "chainId": "litecoin",
+    "rpcList": [
+      {
+        "chainId": "litecoin",
+        "id": 8,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://chain.so/api/v2"
+      }
+    ]
+  },
+  {
+    "chainId": "zilliqa",
+    "rpcList": [
+      {
+        "chainId": "zilliqa",
+        "id": 25,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://api.zilliqa.com"
+      }
+    ]
+  },
+  {
+    "chainId": "terrav2",
+    "rpcList": [
+      {
+        "chainId": "terrav2",
+        "id": 38,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://phoenix-lcd.terra.dev"
+      }
+    ]
+  },
+  {
+    "chainId": "klaytn",
+    "rpcList": [
+      {
+        "chainId": "klaytn",
+        "id": 35,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://klaytn01.fandom.finance"
+      }
+    ]
+  },
+  {
+    "chainId": "cosmos",
+    "rpcList": [
+      {
+        "chainId": "cosmos",
+        "id": 31,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://cosmos-rest.publicnode.com"
+      }
+    ]
+  },
+  {
+    "chainId": "tron",
+    "rpcList": [
+      {
+        "chainId": "tron",
+        "id": 13,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://api.trongrid.io"
+      }
+    ]
+  },
+  {
+    "chainId": "vechain",
+    "rpcList": [
+      {
+        "chainId": "vechain",
+        "id": 15,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://mainnet.veblocks.net"
+      }
+    ]
+  },
+  {
+    "chainId": "kusama",
+    "rpcList": [
+      {
+        "chainId": "kusama",
+        "id": 29,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://kusama-rpc.polkadot.io"
+      }
+    ]
+  },
+  {
+    "chainId": "polkadot",
+    "rpcList": [
+      {
+        "chainId": "polkadot",
+        "id": 9,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://polkadot.api.onfinality.io/public-rpc"
+      }
+    ]
+  },
+  {
+    "chainId": "kava",
+    "rpcList": [
+      {
+        "chainId": "kava",
+        "id": 33,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://api.data.kava.io"
+      }
+    ]
+  },
+  {
+    "chainId": "classic",
+    "rpcList": [
+      {
+        "chainId": "classic",
+        "id": 18,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://etc.mytokenpocket.vip"
+      }
+    ]
+  },
+  {
+    "chainId": "ripple",
+    "rpcList": [
+      {
+        "chainId": "ripple",
+        "id": 14,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://s1.ripple.com:51234"
+      }
+    ]
+  },
+  {
+    "chainId": "polygon",
+    "rpcList": [
+      {
+        "chainId": "polygon",
+        "id": 10,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://polygon-rpc.com"
+      }
+    ]
+  },
+  {
+    "chainId": "stellar",
+    "rpcList": [
+      {
+        "chainId": "stellar",
+        "id": 21,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://horizon.stellar.org"
+      }
+    ]
+  },
+  {
+    "chainId": "thorchain",
+    "rpcList": [
+      {
+        "chainId": "thorchain",
+        "id": 37,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://rpc.ninerealms.com/"
+      }
+    ]
+  },
+  {
+    "chainId": "iotex",
+    "rpcList": [
+      {
+        "chainId": "iotex",
+        "id": 28,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://babel-api.mainnet.iotex.io"
+      }
+    ]
+  },
+  {
+    "chainId": "dash",
+    "rpcList": [
+      {
+        "chainId": "dash",
+        "id": 6,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://chain.so/api/v2"
+      }
+    ]
+  },
+  {
+    "chainId": "tomochain",
+    "rpcList": [
+      {
+        "chainId": "tomochain",
+        "id": 41,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://rpc.tomochain.com"
+      }
+    ]
+  },
+  {
+    "chainId": "bitcoin",
+    "rpcList": [
+      {
+        "chainId": "bitcoin",
+        "id": 2,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://chain.so/api/v2"
+      }
+    ]
+  },
+  {
+    "chainId": "algorand",
+    "rpcList": [
+      {
+        "chainId": "algorand",
+        "id": 23,
+        "status": "AVAILABLE",
+        "type": "JSON_RPC",
+        "url": "https://mainnet-api.algonode.cloud"
+      }
+    ]
+  }
+]
